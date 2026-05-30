@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - X10THINK</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ====================================================================
+           📌 NEON-READY CYBERPUNK ARCHITECTURE
+           ==================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #050816;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .dashboard-body {
+            background: #050816;
+            min-height: 100vh;
+            width: 100%;
+            display: block;
+            padding: 30px;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* 🌐 TOP BAR STYLING */
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+            padding-bottom: 25px;
+        }
+
+        /* ✨ PREMIUM TECH LOGO ARCHITECTURE */
+        .premium-logo-container {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+
+        .brand-logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 34px;
+            font-weight: 900;
+            letter-spacing: 3px;
+            /* Premium Metallic Chrome Gradient Effect */
+            background: linear-gradient(135deg, #ffffff 20%, #00ffff 70%, #00b3b3 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Multi-layered Neon Reflection Glow */
+            filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.3)) drop-shadow(0 0 20px rgba(0, 255, 255, 0.15));
+            text-transform: uppercase;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover animation on logo */
+        .premium-logo-container:hover .brand-logo-text {
+            filter: drop-shadow(0 0 12px rgba(0, 255, 255, 0.6)) drop-shadow(0 0 25px rgba(0, 255, 255, 0.3));
+            letter-spacing: 4px;
+        }
+
+        /* Cybernetic Geometric Accent Line under Logo */
+        .brand-logo-accent {
+            width: 45px;
+            height: 3px;
+            background: #00ffff;
+            margin-top: 4px;
+            border-radius: 2px;
+            box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            transition: width 0.3s ease;
+        }
+
+        .premium-logo-container:hover .brand-logo-accent {
+            width: 100%;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            color: white;
+            font-weight: 500;
+        }
+
+        .points-badge {
+            background: rgba(0, 255, 255, 0.1);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+
+        .logout-btn {
+            background: #ff1744;
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .logout-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 23, 68, 0.4);
+        }
+
+        /* 🔔 FLASH BANNER */
+        .flash {
+            background: rgba(255, 23, 68, 0.2);
+            border: 1px solid #ff1744;
+            padding: 15px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            color: white;
+            font-weight: 600;
+        }
+
+        /* 🎛️ DUAL COLUMN GRID FOR CONTROLS */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* GLOBAL GLASS PANEL WITH SMOOTH NEON HOVER SHADES */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.05);
+            transition: all 0.4s ease-in-out;
+        }
+
+        .glass-panel.image-gen-box:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 255, 255, 0.4);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.25), inset 0 0 10px rgba(0, 255, 255, 0.05);
+        }
+
+        .glass-panel.redeem-box:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 230, 118, 0.4);
+            box-shadow: 0 0 25px rgba(0, 230, 118, 0.25), inset 0 0 10px rgba(0, 230, 118, 0.05);
+        }
+
+        .glass-panel.chat-box:hover {
+            transform: translateY(-3px);
+            border-color: rgba(0, 255, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.2), inset 0 0 15px rgba(0, 255, 255, 0.03);
+        }
+
+        .panel-heading {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .text-cyan { color: #00ffff; text-shadow: 0 0 10px rgba(0, 255, 255, 0.2); }
+        .text-green { color: #00e676; text-shadow: 0 0 10px rgba(0, 230, 118, 0.2); }
+
+        p.description {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        textarea.custom-prompt, input.custom-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            color: white;
+            outline: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+        textarea.custom-prompt { resize: none; }
+        textarea.custom-prompt:focus, input.custom-input:focus {
+            border-color: #00ffff;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        button.action-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-cyan { background: #00ffff; color: black; }
+        .btn-cyan:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 255, 255, 0.4); }
+        .btn-green { background: #00e676; color: black; }
+        .btn-green:hover { transform: scale(1.02); box-shadow: 0 0 20px rgba(0, 230, 118, 0.4); }
+
+        .suggestions-wrapper {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .suggestion-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #94a3b8;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .suggestion-chip:hover {
+            background: rgba(0, 255, 255, 0.15);
+            border-color: #00ffff;
+            color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+        }
+
+        /* ====================================================================
+           💬 CHAT ENGINE INTERFACE ARCHITECTURE
+           ==================================================================== */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            height: 320px;
+        }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .message {
+            margin-bottom: 10px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 13.5px;
+            max-width: 85%;
+            word-wrap: break-word;
+        }
+        .user-msg {
+            background: rgba(0, 255, 255, 0.15);
+            color: #00ffff;
+            align-self: flex-end;
+            margin-left: auto;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+        }
+        .bot-msg {
+            background: rgba(255, 255, 255, 0.06);
+            color: white;
+            align-self: flex-start;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .chat-loading {
+            display: flex;
+            gap: 4px;
+            padding: 12px 15px;
+            align-items: center;
+        }
+        .chat-loading span {
+            width: 8px;
+            height: 8px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .chat-loading span:nth-child(1) { animation-delay: -0.32s; }
+        .chat-loading span:nth-child(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input-wrapper input {
+            margin-bottom: 0px !important;
+        }
+        .chat-send-btn {
+            background: #00ffff;
+            color: black;
+            border: none;
+            padding: 0 20px;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .chat-send-btn:hover { transform: scale(1.03); }
+
+        /* ====================================================================
+           🖼️ GALLERY ARCHITECTURE
+           ==================================================================== */
+        .gallery-section-title {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 25px;
+            font-weight: bold;
+            border-left: 4px solid #00ffff;
+            padding-left: 15px;
+            margin-top: 40px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .image-card {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            padding: 15px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.05);
+            transition: 0.3s;
+            position: relative;
+        }
+
+        .image-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.25);
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+
+        .image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .generated-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .download-overlay-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(5, 8, 22, 0.85);
+            border: 1px solid #00ffff;
+            color: #00ffff;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+            transition: 0.3s;
+            opacity: 0.9;
+        }
+        .download-overlay-btn:hover {
+            transform: scale(1.1);
+            background: #00ffff;
+            color: black;
+            box-shadow: 0 0 15px #00ffff;
+        }
+
+        .prompt-box {
+            margin-top: 12px;
+            padding: 12px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.04);
+            color: #e2e8f0;
+            font-size: 13px;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .meta-date {
+            display: block;
+            font-size: 11px;
+            color: #64748b;
+            margin-top: 8px;
+        }
+
+        /* ====================================================================
+           ⏳ LOADING BANNER OVERLAYS
+           ==================================================================== */
+        .loading-screen-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 8, 22, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 99999;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .cyber-spinner {
+            width: 70px;
+            height: 70px;
+            border: 4px solid rgba(0, 255, 255, 0.1);
+            border-left-color: #00ffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            margin-bottom: 25px;
+        }
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+        .loading-text {
+            color: #00ffff;
+            font-size: 20px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loading-screen-overlay" id="imageLoadingScreen">
+        <div class="cyber-spinner"></div>
+        <div class="loading-text"><i class="fas fa-wand-magic-sparkles"></i> RENDERING YOUR IMAGINATION...</div>
+        <p style="color: #64748b; font-size: 13px; margin-top: 10px;">Expanding core prompts & rendering pipeline via Flux Core</p>
+    </div>
+
+    <div class="dashboard-body">
+        <div class="dashboard-container">
+
+            <div class="top-bar">
+                <div class="premium-logo-container">
+                    <div class="brand-logo-text">X10THINK</div>
+                    <div class="brand-logo-accent"></div>
+                </div>
+                <div class="user-info">
+                    <span><i class="fas fa-user text-cyan"></i> {{ user.username }}</span>
+                    <span class="points-badge"><i class="fas fa-database"></i> {{ user.points }} Points</span>
+                    <a href="{{ url_for('logout') }}" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </div>
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="flash"><i class="fas fa-exclamation-circle"></i> {{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="form-grid">
+                
+                <div class="glass-panel image-gen-box">
+                    <div class="panel-heading text-cyan">
+                        <i class="fas fa-wand-magic-sparkles"></i> Create New Image
+                    </div>
+                    <form action="{{ url_for('generate') }}" method="POST" onsubmit="showImageLoading()">
+                        <label class="form-label" style="color: #94a3b8; font-size: 14px; display:block; margin-bottom:8px;">Describe your imagination:</label>
+                        <textarea class="custom-prompt" id="prompt" name="prompt" rows="4" 
+                            placeholder="e.g., A futuristic flying car over cyberpunk city..." required></textarea>
+                        
+                        <div style="color: #64748b; font-size: 11px; font-weight: 600; margin-top: -5px; margin-bottom: 5px;">QUICK SUGGESTIONS:</div>
+                        <div class="suggestions-wrapper" style="margin-bottom: 20px;">
+                            {% for item in suggestions %}
+                                <div class="suggestion-chip" onclick="applySuggestion('{{ item.text }}')">
+                                    {{ item.icon }} {{ item.label }}
+                                </div>
+                            {% endfor %}
+                        </div>
+
+                        <button type="submit" class="action-btn btn-cyan">
+                            <i class="fas fa-paint-brush"></i> Generate Image (1 Point)
+                        </button>
+                    </form>
+                </div>
+
+                <div class="glass-panel redeem-box">
+                    <div class="panel-heading text-green">
+                        <i class="fas fa-ticket-alt"></i> Redeem Points
+                    </div>
+                    <p class="description">Enter your unique system access voucher coupon code below to instantly top up your wallet points balance.</p>
+                    <form action="{{ url_for('redeem') }}" method="POST" style="margin-top: 25px;">
+                        <label class="form-label" style="color: #94a3b8; font-size: 14px; display:block; margin-bottom:8px;">Voucher Code:</label>
+                        <input type="text" class="custom-input" id="code" name="code" placeholder="Format: X10-XXXX" required>
+                        <button type="submit" class="action-btn btn-green">
+                            <i class="fas fa-check-circle"></i> Claim Points
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="glass-panel chat-box" style="margin-bottom: 40px;">
+                <div class="panel-heading text-cyan">
+                    <i class="fas fa-comments"></i> X10THINK AI Support System
+                </div>
+                <div class="chat-container">
+                    <div class="chat-messages d-flex flex-column" id="chatWindow">
+                        <div class="message bot-msg">Hello! I am X10THINK AI Assistant. Ask me anything about image generation or point recharges!</div>
+                    </div>
+                    <div class="chat-input-wrapper">
+                        <input type="text" class="custom-input" id="chatInput" placeholder="Type your message here..." onkeypress="handleKeyPress(event)">
+                        <button class="chat-send-btn" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="gallery-section-title">📁 Your Creative Studio History</div>
+            
+            <div class="gallery">
+                {% if user_images %}
+                    {% for img in user_images %}
+                        <div class="image-card">
+                            <div class="image-wrapper">
+                                <img src="data:image/jpeg;base64,{{ img.image_data }}" class="generated-image" alt="AI Production">
+                                <a href="data:image/jpeg;base64,{{ img.image_data }}" download="X10THINK_{{ img.id }}.jpg" class="download-overlay-btn" title="Download Image">
+                                    <i class="fas fa-download"></i>
+                                </a>
+                            </div>
+                            <div class="prompt-box" title="{{ img.prompt }}">
+                                <strong>Prompt:</strong> {{ img.prompt }}
+                                <span class="meta-date"><i class="far fa-clock"></i> {{ img.created_at.strftime('%Y-%m-%d %H:%M') }}</span>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div style="grid-column: 1/-1; text-align: center; color: #64748b; padding: 50px 0; font-weight: 500;">
+                        <i class="fas fa-folder-open fa-2x mb-2 d-block" style="color: rgba(255,255,255,0.1)"></i>
+                        No images found in history! Write your first creative description above.
+                    </div>
+                {% endif %}
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        if (typeof window.showImageLoading !== 'function') {
+            window.showImageLoading = function() {
+                document.getElementById('imageLoadingScreen').style.display = 'flex';
+            };
+        }
+
+        function applySuggestion(text) {
+            document.getElementById('prompt').value = text;
+        }
+
+        function sendMessage() {
+            const inputField = document.getElementById('chatInput');
+            const messageText = inputField.value.trim();
+            if (!messageText) return;
+
+            const chatWindow = document.getElementById('chatWindow');
+
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user-msg';
+            userDiv.innerText = messageText;
+            chatWindow.appendChild(userDiv);
+            
+            inputField.value = '';
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'message bot-msg chat-loading';
+            loadingDiv.id = 'tempChatLoader';
+            loadingDiv.innerHTML = '<span></span><span></span><span></span>';
+            chatWindow.appendChild(loadingDiv);
+            chatWindow.scrollTop = chatWindow.scrollHeight;
+
+            fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: messageText })
+            })
+            .then(response => response.json())
+            .then(data => {
+                const loader = document.getElementById('tempChatLoader');
+                if (loader) loader.remove();
+
+                const botDiv = document.createElement('div');
+                botDiv.className = 'message bot-msg';
+                botDiv.innerText = data.reply;
+                chatWindow.appendChild(botDiv);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            })
+            .catch(error => {
+                console.error('Chat Error:', error);
+                const loader = document.getElementById('tempChatLoader');
+                if (loader) loader.remove();
+
+                const errDiv = document.createElement('div');
+                errDiv.className = 'message bot-msg';
+                errDiv.style.color = '#ff1744';
+                errDiv.innerText = 'Network error. Could not connect to AI processor.';
+                chatWindow.appendChild(errDiv);
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            });
+        }
+
+        function handleKeyPress(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - X10THINK</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: #050816;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* 🎛️ GLASS PANEL FOR REGISTER CARD */
+        .register-card {
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 45px 35px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 0 40px rgba(0, 255, 255, 0.08);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* ✨ PREMIUM TECH LOGO ARCHITECTURE (MATCHING DASHBOARD & LOGIN) */
+        .premium-logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            margin-bottom: 8px; /* Spacing before subtitle */
+        }
+
+        .brand-logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 38px; /* Perfectly sized for stacked text layout */
+            font-weight: 900;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            /* Premium Metallic Chrome Gradient Effect */
+            background: linear-gradient(135deg, #ffffff 20%, #00ffff 70%, #00b3b3 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            /* Multi-layered Neon Reflection Glow */
+            filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.35)) drop-shadow(0 0 25px rgba(0, 255, 255, 0.15));
+            text-transform: uppercase;
+            user-select: none;
+            transition: all 0.3s ease;
+        }
+
+        /* Cybernetic Geometric Accent Line under Logo */
+        .brand-logo-accent {
+            width: 55px;
+            height: 3px;
+            background: #00ffff;
+            margin-top: 8px;
+            border-radius: 2px;
+            box-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+            transition: width 0.3s ease;
+        }
+
+        /* Hover interaction effect on whole card / logo */
+        .register-card:hover .brand-logo-text {
+            filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.6)) drop-shadow(0 0 30px rgba(0, 255, 255, 0.3));
+            letter-spacing: 4px;
+        }
+
+        .register-card:hover .brand-logo-accent {
+            width: 160px; /* Smooth stretch effect on card hover */
+        }
+
+        /* Subtitle Styling */
+        .subtitle {
+            color: #94a3b8;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            margin-bottom: 35px;
+        }
+
+        /* 🔔 FLASH ALERTS */
+        .flash-messages {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .flash {
+            background: rgba(255, 23, 68, 0.15);
+            border: 1px solid #ff1744;
+            padding: 12px;
+            border-radius: 10px;
+            color: #ff5252;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: left;
+        }
+
+        /* 📋 INPUT FIELDS FORM STYLING */
+        form {
+            width: 100%;
+        }
+
+        .custom-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.06);
+            color: white;
+            outline: none;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .custom-input:focus {
+            border-color: #00ffff;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+        }
+
+        /* ⚡ REGISTER BUTTON */
+        .register-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #00ffff;
+            color: black;
+            font-weight: bold;
+            font-size: 15px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: 0.3s;
+            margin-top: 5px;
+            margin-bottom: 25px;
+        }
+
+        .register-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.45);
+        }
+
+        /* 🔗 BOTTOM ACTION LINKS */
+        .footer-link {
+            color: #00ffff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+
+        .footer-link:hover {
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.6);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="register-card">
+        
+        <div class="premium-logo-container">
+            <div class="brand-logo-text">Create<br>Account</div>
+            <div class="brand-logo-accent"></div>
+        </div>
+        
+        <div class="subtitle" style="margin-top: 8px;">Join X10THINK Platform</div>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for message in messages %}
+                        <div class="flash"><i class="fas fa-exclamation-circle"></i> {{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form action="{{ url_for('register') }}" method="POST">
+            <input type="text" name="username" class="custom-input" placeholder="Username" required>
+            <input type="password" name="password" class="custom-input" placeholder="Password" required>
+            
+            <button type="submit" class="register-btn">Register</button>
+        </form>
+
+        <a href="{{ url_for('login') }}" class="footer-link">Already have an account?</a>
+
+    </div>
+
+</body>
+</html>

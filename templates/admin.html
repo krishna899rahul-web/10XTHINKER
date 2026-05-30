@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - X10THINK</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Extra custom styling to force options to stay visible */
+        .admin-box {
+            background: rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+        }
+        .admin-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            background: rgba(0, 0, 0, 0.5) !important;
+            color: #fff !important;
+            border: 1px solid #00ffff !important;
+            border-radius: 8px;
+        }
+        .admin-btn {
+            background: #00e5ff;
+            color: black;
+            font-weight: bold;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="dashboard-body" style="overflow-y: auto; display: block; height: auto; padding: 40px 20px;">
+
+<div class="dashboard-container" style="max-width: 900px; margin: 0 auto;">
+    
+    <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+        <h1 style="font-size: 28px; color: #00ffff; margin: 0;">⚡ X10THINK ADMIN PANEL</h1>
+        <div class="user-info">
+            <a href="/dashboard" style="display: inline-block; background: rgba(255,255,255,0.1); padding: 8px 16px; border-radius: 8px; color: white; margin: 0 10px 0 0;">Go to Dashboard</a>
+            <a href="/logout" style="display: inline-block; color: #ff1744; margin: 0;">Logout</a>
+        </div>
+    </div>
+
+    <div class="admin-box">
+        <h2 style="color: white; margin-bottom: 15px; font-size: 20px;">Create New Recharge Code</h2>
+        <form method="POST">
+            <input 
+                type="number" 
+                name="points" 
+                class="admin-input" 
+                placeholder="Enter Points Value (e.g., 50, 100)" 
+                required
+            >
+            <button type="submit" class="admin-btn">
+                GENERATE RECHARGE CODE
+            </button>
+        </form>
+    </div>
+
+    <div class="admin-box">
+        <h2 style="color: white; margin-bottom: 20px; font-size: 20px;">Active Recharge Codes</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px;">
+            {% for code in codes %}
+            <div class="prompt-box" style="background: rgba(0,0,0,0.4); padding: 15px; border-radius: 10px; border-left: 4px solid #00ffff;">
+                <p style="margin-bottom: 5px; font-size: 14px;"><b>Code:</b> <span style="color:#00ffff; font-family: monospace;">{{ code.code }}</span></p>
+                <p style="margin-bottom: 5px; font-size: 14px;"><b>Points:</b> {{ code.point_value }} 🪙</p>
+                <p style="margin-bottom: 0; font-size: 14px;"><b>Used Status:</b> {{ code.is_used }}</p>
+            </div>
+            {% else %}
+            <p style="color: #aaa; grid-column: 1/-1;">No codes generated yet. Use the form above to create one!</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="admin-box">
+        <h2 style="color: white; margin-bottom: 20px; font-size: 20px;">System Users Balance</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 15px;">
+            {% for user in users %}
+            <div class="prompt-box" style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 10px;">
+                <p style="margin-bottom: 5px;"><b>User:</b> {{ user.username }}</p>
+                <p style="margin-bottom: 0;"><b>Points Balance:</b> {{ user.points }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>
